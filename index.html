@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الطير الذهبي لتجارة السيارات | البوابة الرقمية الفاخرة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-light: #fef08a;
+            --gold-primary: #d4af37;
+            --gold-dark: #aa7c11;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --gold-glow: 0 0 25px rgba(212, 175, 55, 0.4);
+            --bg-black: #06080c;
+            --card-surface: rgba(18, 24, 38, 0.85);
+            --border-glass: rgba(212, 175, 55, 0.25);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 10% 40%, rgba(30, 41, 59, 0.5) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px 12px 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .luxury-wrapper {
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* رأس الصفحة الفخم */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .emblem-outer {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 16px;
+            position: relative;
+            padding: 3px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            box-shadow: var(--gold-glow);
+        }
+
+        .emblem-inner {
+            width: 100%;
+            height: 100%;
+            background: #090d14;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .emblem-icon {
+            font-size: 38px;
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.5));
+        }
+
+        .brand-title {
+            font-size: 24px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .brand-subtitle {
+            font-size: 13px;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+        }
+
+        .vip-status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .badge {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* كروت الأقسام بتقنية Glassmorphism */
+        .glass-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+        }
+
+        .section-headline {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .section-headline span {
+            color: var(--gold-primary);
+        }
+
+        /* معرض السيارات الفارهة (Horizontal Scroll) */
+        .fleet-scroller {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+
+        .fleet-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .fleet-item {
+            min-width: 170px;
+            background: #0d121c;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fleet-item.active, .fleet-item:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .fleet-item img {
+            width: 100%;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .fleet-item-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .fleet-item-tag {
+            font-size: 10px;
+            color: var(--gold-primary);
+        }
+
+        /* حقول الإدخال الفاخرة */
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+            margin-bottom: 6px;
+        }
+
+        .custom-input, .custom-select {
+            width: 100%;
+            padding: 13px 14px;
+            background: #090e17;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .custom-input:focus, .custom-select:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+        }
+
+        /* الأزرار الذهبية الرنانة */
+        .gold-btn {
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 800;
+            font-size: 15px;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .gold-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* روابط التوجيه السريعة (VIP Direct Links) */
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0b1019;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 16px;
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        .action-row:hover {
+            border-color: var(--gold-primary);
+            background: #111724;
+            transform: translateX(-4px);
+        }
+
+        .action-row .icon-bubble {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 18px;
+        }
+
+        .action-row.wp .icon-bubble {
+            background: rgba(37, 211, 102, 0.15);
+            color: #25d366;
+        }
+
+        .action-row.loc .icon-bubble {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: #475569;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="luxury-wrapper">
+
+    <!-- الشعار والترويسة الفاخرة -->
+    <div class="brand-header">
+        <div class="emblem-outer">
+            <div class="emblem-inner">
+                <div class="emblem-icon">🦅</div>
+            </div>
+        </div>
+        <h1 class="brand-title">معرض الطير الذهبي</h1>
+        <div class="brand-subtitle">لتجارة وتوريد أحدث السيارات الفارهة | دمشق</div>
+
+        <div class="vip-status-bar">
+            <div class="badge">✨ فراغة فـوراً</div>
+            <div class="badge">🛡️ سيارات مكفولة</div>
+            <div class="badge">💎 نخبة العروض</div>
+        </div>
+    </div>
+
+    <!-- أسطول النخبة (معرض تفاعلي سريع) -->
+    <div class="glass-card">
+        <div class="section-headline">
+            <span>⚜️</span> أسطول السيارات الأكثر طلباً
+        </div>
+        <div class="fleet-scroller">
+            <div class="fleet-item active" onclick="selectCar('تويوتا هايلوكس GR فارهة')">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=300&q=80" alt="هايلوكس">
+                <div class="fleet-item-name">هايلوكس دبل</div>
+                <div class="fleet-item-tag">طلب فوري ⚡</div>
+            </div>
+            <div class="fleet-item" onclick="selectCar('مرسيدس بنز فئة G / S')">
+                <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=300&q=80" alt="مرسيدس">
+                <div class="fleet-item-name">مرسيدس VIP</div>
+                <div class="fleet-item-tag">تسليم فوري 🔑</div>
+            </div>
+            <div class="fleet-item" onclick="selectCar('دفع رباعي فاره / تاهو / جيب')">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=300&q=80" alt="دفع رباعي">
+                <div class="fleet-item-name">SUV فخامة</div>
+                <div class="fleet-item-tag">مكفولة 100%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- فلتر الطلب الذكي لتخفيف الضغط وفرز الزبائن الجادين -->
+    <div class="glass-card">
+        <div class="section-headline">
+            <span>⚡</span> حجز موعد معاينة أو استفسار فوري
+        </div>
+
+        <div class="input-group">
+            <label>السيارة المطلوبة:</label>
+            <input type="text" id="carInput" class="custom-input" value="تويوتا هايلوكس GR فارهة">
+        </div>
+
+        <div class="input-group">
+            <label>طبيعة المعاملة:</label>
+            <select id="dealType" class="custom-select">
+                <option value="شراء مباشر نقدي (كاش)">شراء مباشر نقدي (فراغة فورية)</option>
+                <option value="تبديل مع دفع الفارق">طلب تبديل مع سيارتي الحالية</option>
+                <option value="استفسار عن السعر والمواصفات الكاملة">استفسار مالي ومواصفات تفصيلية</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>الاسم الكريم أو رقم الهاتف (اختياري لسرعة الرد):</label>
+            <input type="text" id="clientContact" class="custom-input" placeholder="اسمك الكريم...">
+        </div>
+
+        <button class="gold-btn" onclick="directToSalesWhatsApp()">
+            تأكيد الطلب وتوجيهه للمبيعات مباشرة 💬
+        </button>
+    </div>
+
+    <!-- بطاقات الوصول السريع والتوجيه المباشر -->
+    <div class="quick-actions">
+        <a href="https://wa.me/445354154971" class="action-row wp" target="_blank">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div class="icon-bubble">💬</div>
+                <div>
+                    <div>محادثة مباشرة مع المبيعات</div>
+                    <div style="font-size:11px; color:#25d366; font-weight:normal;">رد فوري على الواتساب المعتمد</div>
+                </div>
+            </div>
+            <span>←</span>
+        </a>
+
+        <a href="tel:0985645939" class="action-row">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div class="icon-bubble">📞</div>
+                <div>
+                    <div>الاتصال بالإدارة العامة</div>
+                    <div style="font-size:11px; color:var(--text-dim); font-weight:normal;">0985645939</div>
+                </div>
+            </div>
+            <span>←</span>
+        </a>
+
+        <a href="https://maps.google.com/?q=Damascus+Airport+Road" class="action-row loc" target="_blank">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div class="icon-bubble">📍</div>
+                <div>
+                    <div>موقع المعرض على الـ GPS</div>
+                    <div style="font-size:11px; color:#38bdf8; font-weight:normal;">الشام - طريق المطار قبل جسر عقربا</div>
+                </div>
+            </div>
+            <span>←</span>
+        </a>
+    </div>
+
+    <div class="footer-note">
+        نظام الاستقبال والتوجيه الذكي المخصص لمعرض الطير الذهبي © 2026
+    </div>
+
+</div>
+
+<script>
+    function selectCar(carName) {
+        document.getElementById('carInput').value = carName;
+        const items = document.querySelectorAll('.fleet-item');
+        items.forEach(el => el.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+
+    function directToSalesWhatsApp() {
+        const car = document.getElementById('carInput').value;
+        const deal = document.getElementById('dealType').value;
+        const client = document.getElementById('clientContact').value || 'عميل مهتم';
+
+        const code = Math.floor(1000 + Math.random() * 9000);
+
+        const text = `*طلب استفسار VIP - معرض الطير الذهبي* 🦅\n` +
+                     `───────────────\n` +
+                     `👤 *المرسل:* ${client}\n` +
+                     `🚗 *السيارة المحددة:* ${car}\n` +
+                     `💼 *طبيعة الطلب:* ${deal}\n` +
+                     `🔖 *كود المراجعة السريعة:* #VIP-${code}\n` +
+                     `───────────────\n` +
+                     `_يرجى تزويدي بالأسعار المتوفرة وإجراءات الفراغة الفورية._`;
+
+        window.open(`https://wa.me/445354154971?text=${encodeURIComponent(text)}`, '_blank');
+    }
+</script>
+
+</body>
+  </html>
+          
